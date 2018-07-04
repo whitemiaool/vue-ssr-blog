@@ -5,7 +5,8 @@ import {
   getbar,
   getallpaper,
   getonepaper,
-  getpact
+  getpact,
+  getrepo
 } from '../api'
 
 export default {
@@ -65,5 +66,8 @@ export default {
   },
   FETCH_TOPIC_BLOGS:({ commit, state },{id}) => {
     return getpact({id:id}).then((res)=>{commit('SET_TOPIC_BLOGS', {data:res.data.data})})
+  },  
+  FETCH_GITS:({commit}) => {
+    return getrepo().then((res)=>{commit('SET_GITS', {data:res.data.data})})
   },
 }

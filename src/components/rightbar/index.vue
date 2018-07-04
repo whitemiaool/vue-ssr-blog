@@ -2,6 +2,7 @@
 <template>
     <div class="r-b">
         <div class="r-b-w-2">
+            <div class="a-u">关于作者</div>
             <div class="r-b-t">
                 <div style="text-align: center;width: 100px;height:100%;display: table;">
                     <span style="display: table-cell;vertical-align: middle;">
@@ -9,6 +10,7 @@
                         </span>
                 </div>
                 <div class="r-b-w">
+                    
                     <div class="r-b-n">dyxuan</div>
                     <div class="r-b-y">lif is shit,taste well</div>
                     <a class="u-email" href="mailto:dyx_uestc@163.com">dyx_uestc@163.com</a>
@@ -74,6 +76,13 @@ export default {
 </script>
 
 <style scoped>
+.a-u {
+    background: #ffff;
+    padding: 15px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-bottom: 1px solid #efefef;
+}
 .r-o-n {
     margin-left: 10px;
 }
@@ -98,6 +107,7 @@ export default {
     /* height: 300px; */
     background: #fff;
     padding: 8px 0px;
+    min-height: 50px;
 }
 .r-b-c-2 {
     width: 300px;

@@ -2,7 +2,7 @@
 <template>
     <div>
         <div class="b-o" v-for="(item,i) in blogs">
-            <div class="b-f">来自话题：<span>{{item.topic}}</span></div>
+            <div class="b-f">来自话题：<span>{{item.topic}}</span><span style="margin-left:25px">作者：dyxuan</span></div>
             <!-- <div class="b-t">{{item.title}}</div> -->
             <a class="b-t" :href='item.paperindex' target="_blank">{{item.title}}</a>
             <div v-if="item.showCon" class="b-xx">作者及其女友觉得很赞</div>
@@ -280,7 +280,7 @@ export default {
         },
         wheel() {
             this.count++;
-            if(this.count > 20) {
+            if(this.count > 1) {
                 this.count = 0;
                 if(this.allone[0]) {
                 } else {
@@ -331,6 +331,9 @@ export default {
     mounted() {
         document.addEventListener('scroll',this.wheel)
     },
+    beforeDestroy() {
+    document.removeEventListener('wheel',this.wheel)
+  }
 }
 </script>
 

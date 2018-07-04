@@ -17,6 +17,7 @@ export function createStore () {
       blogs:[],
       oneblog:[],
       tplist:undefined,
+      gits:[],
       lists: {
         top: [/* number */],
         new: [],

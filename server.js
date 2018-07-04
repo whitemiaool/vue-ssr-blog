@@ -98,7 +98,7 @@ function render (req, res) {
   }
 
   const context = {
-    title: 'Vue HN 2.0', // default title
+    title: '记乎--一个根本记不住的网站', // default title
     url: req.url
   }
   renderer.renderToString(context, (err, html) => {

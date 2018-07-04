@@ -44,7 +44,10 @@
 	},
 	mounted() {
 		document.addEventListener('wheel',this.wheel)
-	}
+  },
+  beforeDestroy() {
+    document.removeEventListener('wheel',this.wheel)
+  }
   }
   </script>
 
@@ -65,8 +68,8 @@
     color: #42b983;
   }
 .Router {
-     transition: all .5s ease;
-	 /* position: absolute; */
+  transition: all .5s ease;
+	 position: absolute;
 	 width: 100%;
 }
 .slide-left-enter, .slide-right-leave-active {  

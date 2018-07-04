@@ -4,7 +4,7 @@
             <div class="p-w" >
             <div style="margin-right: 10px;width: 694px;padding-bottom: 20px;">
                 <div class="b-o" v-for="(item,i) in blogs">
-                    <div class="b-f">来自话题：<span>{{item.topic}}</span></div>
+                    <div class="b-f">来自话题：<span>{{item.topic}}</span><span style="margin-left:25px">作者：dyxuan</span></div>
                     <a class="b-t" :href='item.paperindex'>{{item.title}}</a>
                     <div class="b-xx">作者及其女友觉得很赞</div>
                     <div >
@@ -91,6 +91,9 @@ export default {
             name:'',
             fs:false
         }
+    },
+    title() {
+        return this.blogs[0].title
     },
     methods:{
         nxf(f) {

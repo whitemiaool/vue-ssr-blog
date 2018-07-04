@@ -21,9 +21,11 @@ export default {
     Vue.set(state.users, id, user || false) /* false means user not found */
   },
   SET_NAV: (state, {data}) => {
+    if(!data) return
     state.nav = data /* false means user not found */
   },
   SET_BLOGS:(state, {data}) => {
+    if(!data) return
     state.blogs = data.map((item,i)=>{
       item.showC    = false
       item.addo     = false
@@ -47,6 +49,7 @@ export default {
       state.oneblog = [item]
   },
   SET_TOPIC_BLOGS:(state, {data}) => {
+    if(!data) return
     state.tplist = data.map((item,i)=>{
         item.showC    = false
         item.addo     = false
@@ -57,5 +60,11 @@ export default {
         item.paperindex = '/index/paper/'+item.paperindex
         return item
     })
-},
+  },
+  SET_GITS:(state, {data}) => {
+    if(!data) return
+      state.gits = data.sort((a,b)=>{
+          return b.stargazers_count - a.stargazers_count
+      });
+  },
 }

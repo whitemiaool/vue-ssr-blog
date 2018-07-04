@@ -21,11 +21,17 @@ export default {
     name:'git',
     data() {
         return {
-            gits:[]
+            gits:this.$store.state.gits
         }
     },
+    asyncData ({store}) {
+        return store.dispatch('FETCH_GITS');
+    },
+    title() {
+        return 'github'
+    },
     mounted() {
-        this.axios.get(API.getrepo).then((res)=>{
+        API.getrepo().then((res)=>{
             if(res.data.code > 10) {
                 this.gits = res.data.data.sort((a,b)=>{
                     return b.stargazers_count - a.stargazers_count

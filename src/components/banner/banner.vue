@@ -21,14 +21,14 @@
                         <router-link class="banner-mp" v-for="item in nav" :key=item.title :to="item.url">
                             {{item.title}}
                         </router-link>
-                        <div class="banner-in-w" :style="tipfuc?'':'background:#f3f3f3'">
+                        <!-- <div class="banner-in-w" :style="tipfuc?'':'background:#f3f3f3'">
                             <input ref="input" @focus.stop="infuc()" @input="change" @blur.stop="infuc" class="banner-in" :placeholder="tipfuc?'':'请输不要不要输入!'"  type="text">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </transition>
             <div class="banner-ava">
-                <!-- <img class="Avatar AppHeader-profileAvatar" width="30" height="30" src="../../assets/ava.jpg"> -->
+                <img class="Avatar AppHeader-profileAvatar" width="30" height="30" src="../../assets/ava.jpg">
             </div>
             <!-- <model :show="show" slot="s1" :close="closeM" title="泰拳警告!!!">
                 <div>傻逼了吧，非要点点点...</div>
