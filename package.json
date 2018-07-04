@@ -22,6 +22,7 @@
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "firebase": "4.6.2",
+    "iview": "^2.14.3",
     "lru-cache": "^4.1.1",
     "route-cache": "0.4.3",
     "serve-favicon": "^2.4.5",

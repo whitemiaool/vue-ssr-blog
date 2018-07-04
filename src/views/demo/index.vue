@@ -20,12 +20,6 @@
 			}
 		}
 	},
-	mounted() {
-		document.addEventListener('wheel',this.wheel)
-  },
-    beforeDestroy() {
-    document.removeEventListener('wheel',this.wheel)
-  }
   }
   </script>
 

@@ -235,7 +235,7 @@ export default {
                 if(blog[i].showCon) {
                     let ct = this.offset(arr[i]).top
                     let c1t = i-1>=0?this.offset(arr[i-1]).top:0
-                    if(!blog[i].showFix&&ct>st+ch) {
+                    if(!blog[i].showFix&&(ct>(st+ch))) {
                         if(i-1>=0) {
                             if(c1t<st) {
                                 this.top = ct
@@ -251,7 +251,7 @@ export default {
                                 return undefined
                             }
                         }
-                        if(this.top > st+ch) {
+                        if(this.top >( st+ch)) {
                             return i
                         }
                     }
@@ -280,22 +280,22 @@ export default {
         },
         wheel() {
             this.count++;
-            if(this.count > 1) {
+            if(this.count > 5) {
                 this.count = 0;
-                if(this.allone[0]) {
-                } else {
-                    let arr = document.querySelectorAll('.b-c');
-                    this.allone = arr;
-                }
+                let arr = document.querySelectorAll('.b-c');
+                this.allone = arr;
                 let index = this.ishowfix(this.allone);
-                for(let i=0;i<this.blogs.length;i++) {
-                    if(i === index) {
-                        this.blogs[index].showFix = true;
-                        continue
-                    } else {
-                        this.blogs[i].showFix = false;
+                console.log('index',index)
+                // if(index !== undefined) {
+                    for(let i=0;i<this.blogs.length;i++) {
+                        if(i === index) {
+                            this.blogs[index].showFix = true;
+                            continue
+                        } else {
+                            this.blogs[i].showFix = false;
+                        }
                     }
-                }
+                // }
             }
         },
         addones(index) {
@@ -324,14 +324,20 @@ export default {
     },
     watch:{
         plist(o,n) {
-            console.log('new',o)
-            this.blogs = o
+            this.blogs = o;
+            this.top = 0;
         }
     },
     mounted() {
-        document.addEventListener('scroll',this.wheel)
+        console.log('mout')
+        document.removeEventListener('wheel',this.wheel)
+        setTimeout(()=>{
+            document.addEventListener('scroll',this.wheel)
+
+        },500)
     },
     beforeDestroy() {
+        console.log('unmout')
     document.removeEventListener('wheel',this.wheel)
   }
 }

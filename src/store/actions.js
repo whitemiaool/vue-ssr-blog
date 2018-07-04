@@ -52,14 +52,10 @@ export default {
       : fetchUser(id).then(user => commit('SET_USER', { id, user }))
   },
   FETCH_NAV: ({ commit, state }) => {
-    return state.nav[0]
-      ? Promise.resolve(state.nav)
-      : getbar().then((res)=>{commit('SET_NAV', {data:res.data.data})})
+      return getbar().then((res)=>{commit('SET_NAV', {data:res.data.data})})
   },
   FETCH_BLOGS:({ commit, state }) => {
-    return state.blogs[0]
-      ? Promise.resolve(state.blogs)
-      : getallpaper().then((res)=>{commit('SET_BLOGS', {data:res.data.data})})
+    return getallpaper().then((res)=>{commit('SET_BLOGS', {data:res.data.data})})
   },
   FETCH_ONE_BLOGS:({ commit, state },{id}) => {
     return getonepaper({index:id}).then((res)=>{commit('SET_ONE_BLOGS', {data:res.data.data})})

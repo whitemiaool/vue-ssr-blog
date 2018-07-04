@@ -83,7 +83,8 @@ export function watchList (type, cb) {
 import axios from 'axios';
 let api2;
 
-axios.defaults.baseURL = 'http://localhost:3000/';
+axios.defaults.baseURL = 'https://dyxuan.top/api/';
+// axios.defaults.baseURL = 'http://localhost:3000';
 console.log(axios.defaults.baseURL)
 axios.defaults.timeout = 10000;
 

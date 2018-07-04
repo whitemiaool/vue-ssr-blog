@@ -31,7 +31,7 @@
         return store.dispatch('FETCH_NAV');
     },
 	methods:{
-		wheel(e) {
+		wheel1(e) {
 			if(e.deltaY>0) {
 				this.swih = true
 			} else {
@@ -43,10 +43,12 @@
 		baner
 	},
 	mounted() {
-		document.addEventListener('wheel',this.wheel)
+    document.removeEventListener('wheel',this.wheel1)
+
+		document.addEventListener('wheel',this.wheel1)
   },
   beforeDestroy() {
-    document.removeEventListener('wheel',this.wheel)
+    document.removeEventListener('wheel',this.wheel1)
   }
   }
   </script>
