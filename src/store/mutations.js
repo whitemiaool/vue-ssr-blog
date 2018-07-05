@@ -26,7 +26,8 @@ export default {
   },
   SET_BLOGS:(state, {data}) => {
     if(!data) return
-    state.blogs = data.map((item,i)=>{
+    // state.blogs.push(res)
+    let res = data.map((item,i)=>{
       item.showC    = false
       item.addo     = false
       item.cmt      = '条评论'
@@ -36,6 +37,9 @@ export default {
       item.paperindex = '/index/paper/'+item.paperindex
       return item
     }) /* false means user not found */
+    let st = state.blogs;
+    st = st.concat(res);
+    state.blogs = st
   },
   SET_ONE_BLOGS:(state, {data}) => {
       let item      = data;

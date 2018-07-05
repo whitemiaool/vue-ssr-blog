@@ -1,9 +1,11 @@
 <template>
     <div class="hello">
 		<baner :list="list" :swih="swih"></baner>
-		<transition :name="transitionName">
+		<!-- <transition :name="transitionName"> -->
 			<router-view class="Router"></router-view>
-		</transition>
+		<!-- </transition> -->
+    <!-- <div>123</div> -->
+    <!-- <baner :list="list" :swih="swih"></baner> -->
     </div>
 </template>
 
@@ -71,7 +73,7 @@
   }
 .Router {
   transition: all .5s ease;
-	 position: absolute;
+	 /* position: absolute; */
 	 width: 100%;
 }
 .slide-left-enter, .slide-right-leave-active {  

@@ -2,7 +2,7 @@
     <div>
         <div class="b-w">
             <div class="p-w" >
-            <div style="margin-right: 10px;width: 694px;padding-bottom: 20px;">
+            <div style="margin-right: 10px;width: 694px;padding-bottom: 5px;">
                 <div class="b-o" v-for="(item,i) in blogs">
                     <div class="b-f">来自话题：<span>{{item.topic}}</span><span style="margin-left:25px">作者：dyxuan</span></div>
                     <a class="b-t" :href='item.paperindex'>{{item.title}}</a>
@@ -188,24 +188,23 @@ export default {
     mounted(){
         console.log('blogs',this.blogs)
     },
-    // beforeCreate() {
-    //     this.axios.post(API.getonepaper,{index:this.$route.params.id}).then((res)=>{
-    //         // console.log(res)
-    //         let item        = res.data.data;
-    //         item.showC      = false
-    //         item.addo       = false
-    //         item.cmt        = '条评论'
-    //         item.showFix    = false
-    //         item.showCon    = false
-    //         item.topic      = item.topic.name
-    //         item.paperindex = '/index/paper/'+item.paperindex
-    //         this.blogs = [item]
-
-    //         this.axios.post(API.getpapercom,{id:item._id,page:1}).then((res)=>{
-    //             this.blogs[0].comments = res.data.data
-    //         })
-    //     })
-    // },
+    mounted() {
+        // this.axios.post(API.getonepaper,{index:this.$route.params.id}).then((res)=>{
+        //     // console.log(res)
+        //     let item        = res.data.data;
+        //     item.showC      = false
+        //     item.addo       = false
+        //     item.cmt        = '条评论'
+        //     item.showFix    = false
+        //     item.showCon    = false
+        //     item.topic      = item.topic.name
+        //     item.paperindex = '/index/paper/'+item.paperindex
+        //     this.blogs = [item]
+        // })
+        API.getpapercom({id:this.blogs[0]._id,page:1}).then((res)=>{
+                this.blogs[0].comments = res.data.data
+        })
+    },
     components:{
         right
     }

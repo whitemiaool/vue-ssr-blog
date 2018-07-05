@@ -4,7 +4,7 @@
         <div >
             <Blog :plist="list"></Blog>
         </div>
-        <Loading :show="show"> </Loading>
+        <!-- <Loading :show="show"> </Loading> -->
     </div>
 </template>
 

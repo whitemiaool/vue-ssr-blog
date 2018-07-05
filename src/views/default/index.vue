@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="b-w" >
-            <div style="margin-right: 10px;width: 694px;padding-bottom: 20px;">
+            <div style="margin-right: 10px;width: 694px;padding-bottom: 5px;">
                 <router-view class="Router"></router-view>
             </div>
             <right></right>

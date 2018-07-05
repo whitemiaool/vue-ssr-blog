@@ -15,9 +15,9 @@
         </a>
       </nav>
     </header> -->
-    <transition name="fade" mode="out-in">
+    <!-- <transition name="fade" mode="out-in"> -->
       <router-view class="view"></router-view>
-    </transition>
+    <!-- </transition> -->
   </div>
 </template>
 <script>

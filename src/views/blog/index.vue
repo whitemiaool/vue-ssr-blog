@@ -74,12 +74,29 @@
                 </div>
             </div>
         </div>
-        <div  v-if="blogs&&!blogs[0]">
+        <div v-if="lazy||(blogs&&!blogs[0])" class="b-o">
+            <div v-if="!nomore" class="loading">
+                <div class="demo-spin-container">
+                    <Spin fix></Spin>
+                </div>
+                <div class="demo-spin-container">
+                    <Spin fix></Spin>
+                </div>
+                <div class="demo-spin-container">
+                    <Spin fix></Spin>
+                </div>
+            </div>
+            <div v-if="nomore" style="text-align: center;">
+                <Icon type="social-octocat" style="font-size: 25px;color: #005cff;"></Icon>
+                <div>没有更多数据了...</div>
+            </div>
+        </div>
+        <!-- <div  v-if="blogs&&!blogs[0]">
             <div class="no-da">
                 <Icon type="ios-refresh-outline"></Icon>
                 <div>暂无数据</div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -102,7 +119,11 @@ export default {
             cp:0,
             lcp:0,
             fs:false,
-            name:''
+            lazy:false,
+            name:'',
+            page:1,
+            loadres:'loading',
+            nomore:false
         }
     },
     props:{
@@ -110,8 +131,11 @@ export default {
             default:undefined
         }
     },
+    title() {
+        return '一个根本记不住的网站'
+    },
     asyncData ({store}) {
-        return store.dispatch('FETCH_BLOGS');
+        return store.dispatch('FETCH_BLOGS',{page:1});
     },
     methods:{
         nxf(f) {
@@ -273,6 +297,7 @@ export default {
             // Get document-relative position by adding viewport scroll to viewport-relative gBCR
             rect = elem.getBoundingClientRect();
             win = elem.ownerDocument.defaultView;
+
             return {
                 top: rect.top + win.pageYOffset,
                 left: rect.left + win.pageXOffset
@@ -280,12 +305,12 @@ export default {
         },
         wheel() {
             this.count++;
+            this.lazyload()
             if(this.count > 5) {
                 this.count = 0;
                 let arr = document.querySelectorAll('.b-c');
                 this.allone = arr;
                 let index = this.ishowfix(this.allone);
-                console.log('index',index)
                 // if(index !== undefined) {
                     for(let i=0;i<this.blogs.length;i++) {
                         if(i === index) {
@@ -296,6 +321,44 @@ export default {
                         }
                     }
                 // }
+            }
+        },
+        lazyload() {
+            if(this.plist) {
+                return
+            }
+            if(this.lazy) {
+                return
+            }
+            let body = document.querySelector('.b-w').querySelector('div');
+            let ch = document.documentElement.clientHeight||window.innerHeight;
+            let sr = body.ownerDocument.defaultView.pageYOffset;
+            if((this.offset(body).top+body.scrollHeight- sr - ch) < 300) {
+                this.lazy = true;
+                API.getallpaper({page:this.page+1}).then((res)=>{
+                    if(res.data.code >10) {
+                        if(res.data.data.length === 0 ) {
+                            this.loadres = '已加载完毕';
+                            this.nomore = true;
+                            return
+                        }
+                        this.page = this.page + 1;
+                        let rs = res.data.data.map((item,i)=>{
+                            item.showC    = false
+                            item.addo     = false
+                            item.cmt      = '条评论'
+                            item.showFix  = false
+                            item.showCon  = false
+                            item.topic    = item.topic.name
+                            item.paperindex = '/index/paper/'+item.paperindex
+                            return item
+                        })
+                        this.blogs = this.blogs.concat(rs);
+                    }
+                    this.lazy = false;
+                    // console.log(res)
+                })
+                // return this.$store.dispatch('FETCH_BLOGS',{page:2});
             }
         },
         addones(index) {
@@ -326,6 +389,7 @@ export default {
         plist(o,n) {
             this.blogs = o;
             this.top = 0;
+            this.nomore = this.blogs.length === 0
         }
     },
     mounted() {
@@ -333,7 +397,7 @@ export default {
         document.removeEventListener('wheel',this.wheel)
         setTimeout(()=>{
             document.addEventListener('scroll',this.wheel)
-
+    
         },500)
     },
     beforeDestroy() {
@@ -344,6 +408,19 @@ export default {
 </script>
 
 <style scoped>
+    .demo-spin-container{
+    	display: inline-block;
+        width: 50px;
+        height: 50px;
+        position: relative;
+    }
+.loading {
+    display: flex;
+    justify-content: space-around;
+}
 
-
+.loading .ivu-spin-dot {
+    height: 30px;
+    width: 30px;
+}
 </style>

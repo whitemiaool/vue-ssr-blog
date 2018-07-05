@@ -138,8 +138,8 @@ export const addpaper = function (o) {
 export const delonepaper = function (o) {
   return api2.post('delonepaper',o)
 }
-export const getallpaper = function () {
-  return api2.get('getallpaper')
+export const getallpaper = function (o) {
+  return api2.post('getallpaper',o)
 }
 export const getonepaper = function (o) {
   return api2.post('getonepaper',o)
