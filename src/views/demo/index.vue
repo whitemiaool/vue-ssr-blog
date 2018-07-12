@@ -1,14 +1,23 @@
 <template>
-    <div class="hello">
+    <div class="git-w">
+      <div class="g-o-w" v-for="item in list">
+        <a  target="_blank" :href="item.url">
+          <span class="g-o-i name">{{item.title}}</span>
+          <span class="g-o-i lin">
+            {{item.breif}}
+          </span>
+        </a>
+      </div>
     </div>
 </template>
 
   <script>
+  import * as API from '../../api/index.js'
   export default {
     name: 'demo',
     data () {
       return {
-		  swih:false
+        list:[],
       }
 	},
 	methods:{
@@ -19,27 +28,18 @@
 				this.swih = false
 			}
 		}
-	},
+  },
+  created() {
+    API.getdemo().then((res)=>{
+      if(res.data.code > 10) {
+        // console.log(res.data.data)
+        this.list = res.data.data
+      }
+  })
+  }
   }
   </script>
 
   <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
-  .con {
-
-  }
-  h1, h2 {
-    font-weight: normal;
-  }
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-  a {
-    color: #42b983;
-  }
   </style>

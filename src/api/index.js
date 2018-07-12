@@ -173,6 +173,9 @@ export const getopic = function () {
 export const deltopic = function (o) {
   return api2.post('delonetopic',o)
 }
+export const getdemo = function (o) {
+  return api2.get('demo')
+}
 
 // export const getbar = function () {
 //   return api.get('getbar')

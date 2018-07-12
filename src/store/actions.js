@@ -54,8 +54,8 @@ export default {
   FETCH_NAV: ({ commit, state }) => {
       return getbar().then((res)=>{commit('SET_NAV', {data:res.data.data})})
   },
-  FETCH_BLOGS:({ commit, state },{page}) => {
-    return getallpaper({page}).then((res)=>{commit('SET_BLOGS', {data:res.data.data})})
+  FETCH_BLOGS:({ commit, state },{page,index}) => {
+    return getallpaper({page}).then((res)=>{commit('SET_BLOGS', {data:res.data.data,index})})
   },
   FETCH_ONE_BLOGS:({ commit, state },{id}) => {
     return getonepaper({index:id}).then((res)=>{commit('SET_ONE_BLOGS', {data:res.data.data})})

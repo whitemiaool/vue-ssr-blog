@@ -24,7 +24,7 @@ export default {
     if(!data) return
     state.nav = data /* false means user not found */
   },
-  SET_BLOGS:(state, {data}) => {
+  SET_BLOGS:(state, {data,index}) => {
     if(!data) return
     // state.blogs.push(res)
     let res = data.map((item,i)=>{
@@ -37,7 +37,7 @@ export default {
       item.paperindex = '/index/paper/'+item.paperindex
       return item
     }) /* false means user not found */
-    let st = state.blogs;
+    let st = !!index?[]:state.blogs;
     st = st.concat(res);
     state.blogs = st
   },

@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .git-w {
     width: 70%;
     margin: 10px auto;

@@ -135,7 +135,7 @@ export default {
         return '一个根本记不住的网站'
     },
     asyncData ({store}) {
-        return store.dispatch('FETCH_BLOGS',{page:1});
+        return store.dispatch('FETCH_BLOGS',{page:1,index:1});
     },
     methods:{
         nxf(f) {
@@ -305,13 +305,12 @@ export default {
         },
         wheel() {
             this.count++;
-            this.lazyload()
+            this.lazyload();
             if(this.count > 5) {
                 this.count = 0;
                 let arr = document.querySelectorAll('.b-c');
                 this.allone = arr;
                 let index = this.ishowfix(this.allone);
-                // if(index !== undefined) {
                     for(let i=0;i<this.blogs.length;i++) {
                         if(i === index) {
                             this.blogs[index].showFix = true;
@@ -330,7 +329,11 @@ export default {
             if(this.lazy) {
                 return
             }
-            let body = document.querySelector('.b-w').querySelector('div');
+            try{
+                let body = document.querySelector('.b-w').querySelector('div');
+            } catch(e) {
+                return;
+            }
             let ch = document.documentElement.clientHeight||window.innerHeight;
             let sr = body.ownerDocument.defaultView.pageYOffset;
             if((this.offset(body).top+body.scrollHeight- sr - ch) < 300) {

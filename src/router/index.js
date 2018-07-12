@@ -22,6 +22,7 @@ import Del from '../views/delpaper/index.vue'
 import Edit from '../views/editpaper/index.vue'
 import Console from '../views/console/index.vue'
 import TopicPaper from '../views/topicpaper/index.vue'
+// import Demo from '../views/demo/index.vue'
 // import Default from '@/view/default/index.vue'
 
 export function createRouter () {
@@ -53,7 +54,7 @@ export function createRouter () {
               component: TopicPaper,
             }]
           },{
-            path: 'demo',
+            path: 'dermo',
             // name: 'demo',
             component: Demo
           },{
