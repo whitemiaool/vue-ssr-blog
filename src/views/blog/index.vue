@@ -330,7 +330,7 @@ export default {
                 return
             }
             try{
-                let body = document.querySelector('.b-w').querySelector('div');
+                var body = document.querySelector('.b-w').querySelector('div');
             } catch(e) {
                 return;
             }

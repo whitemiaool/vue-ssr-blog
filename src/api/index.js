@@ -85,7 +85,6 @@ let api2;
 
 axios.defaults.baseURL = 'https://dyxuan.top/api/';
 // axios.defaults.baseURL = 'http://localhost:3000';
-console.log(axios.defaults.baseURL)
 axios.defaults.timeout = 10000;
 
 axios.interceptors.response.use((res) => {
